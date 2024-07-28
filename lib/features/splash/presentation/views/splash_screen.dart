@@ -1,3 +1,4 @@
+import 'package:chef_app/features/splash/presentation/views/widgets/splash_screen_body.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreenView extends StatelessWidget {
@@ -5,6 +6,8 @@ class SplashScreenView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return const Scaffold(
+      body: SplashScreenViewBody(),
+    );
   }
 }
