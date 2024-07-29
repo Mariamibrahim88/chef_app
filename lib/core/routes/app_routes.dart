@@ -1,7 +1,7 @@
-import 'package:chef_app/features/auth/presentation/views/change_lang_view.dart';
 import 'package:chef_app/features/auth/presentation/views/login_view.dart';
 import 'package:chef_app/features/auth/presentation/views/reset_password_view.dart';
 import 'package:chef_app/features/auth/presentation/views/send_code_view.dart';
+import 'package:chef_app/features/splash/presentation/views/change_lang_view.dart';
 import 'package:chef_app/features/splash/presentation/views/splash_screen.dart';
 import 'package:flutter/material.dart';
 

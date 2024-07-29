@@ -27,7 +27,7 @@ TextStyle boldStyle({
 
 TextStyle regularStyle({
   Color color = AppColors.white,
-  double fontSize = 24,
+  double fontSize = 22,
 }) {
   return GoogleFonts.lato(
     color: color,

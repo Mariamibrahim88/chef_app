@@ -1,11 +1,23 @@
+import 'package:chef_app/core/routes/app_routes.dart';
 import 'package:chef_app/core/utils/app_spacing.dart';
-import 'package:chef_app/core/utils/app_text_style.dart';
+import 'package:chef_app/core/utils/commons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
-class SplashScreenViewBody extends StatelessWidget {
+class SplashScreenViewBody extends StatefulWidget {
   const SplashScreenViewBody({super.key});
+
+  @override
+  State<SplashScreenViewBody> createState() => _SplashScreenViewBodyState();
+}
+
+class _SplashScreenViewBodyState extends State<SplashScreenViewBody> {
+  @override
+  void initState() {
+    super.initState();
+    navigateToHome();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,5 +41,12 @@ class SplashScreenViewBody extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  void navigateToHome() {
+    Future.delayed(const Duration(seconds: 2)).then((value) {
+      // Navigator.pushNamed(context, Routes.changLan);
+      navigate(context: context, route: Routes.changLan);
+    });
   }
 }
