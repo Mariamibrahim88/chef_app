@@ -1,7 +1,12 @@
+import 'package:chef_app/core/cubit/global_cubit_cubit.dart';
+import 'package:chef_app/core/cubit/global_cubit_state.dart';
+import 'package:chef_app/core/local/app_local.dart';
 import 'package:chef_app/core/utils/app_assets.dart';
 import 'package:chef_app/core/utils/app_spacing.dart';
+import 'package:chef_app/core/utils/app_strings.dart';
 import 'package:chef_app/features/splash/presentation/views/widgets/custom_buttom.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -23,28 +28,38 @@ class ChangeLangScreenBody extends StatelessWidget {
         ),
         verticalSpace(10),
         Text(
-          'Welcome to Chef App',
+          AppString.welocmeToChefApp.tr(context),
           style: Theme.of(context).textTheme.displayLarge,
         ),
         verticalSpace(50),
         Text(
-          'Please select your language',
+          AppString.pleaseSelectYourLanguage.tr(context),
           style: Theme.of(context)
               .textTheme
               .displayMedium!
               .copyWith(color: Colors.white.withOpacity(0.4)),
         ),
         verticalSpace(40),
-        const Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            CustomButtom(
-              text: 'English',
-            ),
-            CustomButtom(
-              text: 'العربية',
-            ),
-          ],
+        BlocBuilder<GlobalCubitCubit, GlobalCubitState>(
+          builder: (context, state) {
+            return Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                CustomButtom(
+                  text: 'English',
+                  onTap: () {
+                    BlocProvider.of<GlobalCubitCubit>(context).changeLang('en');
+                  },
+                ),
+                CustomButtom(
+                  text: 'العربية',
+                  onTap: () {
+                    BlocProvider.of<GlobalCubitCubit>(context).changeLang('ar');
+                  },
+                ),
+              ],
+            );
+          },
         )
       ],
     ));

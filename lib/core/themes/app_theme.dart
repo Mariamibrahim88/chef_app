@@ -13,8 +13,11 @@ ThemeData getAppThem() {
         //   color: AppColors.black,
         // ),
       ),
-      textTheme:
-          TextTheme(displayLarge: boldStyle(), displayMedium: regularStyle()),
+      textTheme: TextTheme(
+          displayLarge: boldStyle(),
+          displayMedium: regularStyle(),
+          displaySmall: regularStyle(
+              fontSize: 18, color: AppColors.white.withOpacity(0.6))),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
           backgroundColor: AppColors.Basecolor,

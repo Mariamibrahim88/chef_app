@@ -1,5 +1,7 @@
+import 'package:chef_app/core/local/app_local.dart';
 import 'package:chef_app/core/routes/app_routes.dart';
 import 'package:chef_app/core/utils/app_spacing.dart';
+import 'package:chef_app/core/utils/app_strings.dart';
 import 'package:chef_app/core/utils/commons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -35,7 +37,7 @@ class _SplashScreenViewBodyState extends State<SplashScreenViewBody> {
           ),
           verticalSpace(20),
           Text(
-            'Chef App',
+            AppString.chefApp.tr(context),
             style: Theme.of(context).textTheme.displayLarge,
           )
         ],
@@ -44,7 +46,7 @@ class _SplashScreenViewBodyState extends State<SplashScreenViewBody> {
   }
 
   void navigateToHome() {
-    Future.delayed(const Duration(seconds: 2)).then((value) {
+    Future.delayed(const Duration(seconds: 3)).then((value) {
       // Navigator.pushNamed(context, Routes.changLan);
       navigate(context: context, route: Routes.changLan);
     });
