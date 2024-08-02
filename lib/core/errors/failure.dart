@@ -39,7 +39,7 @@ class ServerFailure extends Failure {
 
   factory ServerFailure.fromResponse(int statusCode, dynamic resonse) {
     if (statusCode == 400 || statusCode == 401 || statusCode == 403) {
-      return ServerFailure(resonse['error']['message']);
+      return ServerFailure(resonse['Error'][0]);
     } else if (statusCode == 404) {
       return ServerFailure('Your request not Found');
     } else if (statusCode == 500) {

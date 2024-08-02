@@ -1,4 +1,6 @@
+import 'package:chef_app/core/local/app_local.dart';
 import 'package:chef_app/core/utils/app_colors.dart';
+import 'package:chef_app/core/utils/app_strings.dart';
 import 'package:flutter/material.dart';
 
 class ForgetPassword extends StatelessWidget {
@@ -11,11 +13,11 @@ class ForgetPassword extends StatelessWidget {
         print('Forget Password?');
       },
       child: Container(
-        child: const Align(
+        child: Align(
           alignment: Alignment.centerRight,
           child: Text(
-            'Forget Password?',
-            style: TextStyle(
+            AppString.forgetPassword.tr(context),
+            style: const TextStyle(
               color: AppColors.white,
               fontSize: 15,
             ),

@@ -19,7 +19,7 @@ class AppRoutes {
       case Routes.initialRoute:
         return MaterialPageRoute(builder: (_) => const LoginView());
       case Routes.login:
-      //return MaterialPageRoute(builder: (_) => const LoginView());
+        return MaterialPageRoute(builder: (_) => const LoginView());
       case Routes.changLan:
         return MaterialPageRoute(builder: (_) => const ChangeLangScreen());
       case Routes.sendCode:

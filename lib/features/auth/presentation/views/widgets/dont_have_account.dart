@@ -1,3 +1,5 @@
+import 'package:chef_app/core/local/app_local.dart';
+import 'package:chef_app/core/utils/app_strings.dart';
 import 'package:chef_app/core/utils/app_text_style.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -11,12 +13,12 @@ class DontHaveAnAccount extends StatelessWidget {
       child: RichText(
           textAlign: TextAlign.center,
           text: TextSpan(children: [
-            const TextSpan(
-              text: 'Don\'t have an account?',
-              style: TextStyle(color: Colors.white, fontSize: 18),
+            TextSpan(
+              text: AppString.haveAccount.tr(context),
+              style: const TextStyle(color: Colors.white, fontSize: 18),
             ),
             TextSpan(
-              text: ' Sign Up',
+              text: AppString.signUp.tr(context),
               style: boldStyle().copyWith(color: Colors.grey, fontSize: 19),
               recognizer: TapGestureRecognizer()
                 ..onTap = () {

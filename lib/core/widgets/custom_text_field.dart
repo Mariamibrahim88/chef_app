@@ -1,4 +1,6 @@
+import 'package:chef_app/core/local/app_local.dart';
 import 'package:chef_app/core/utils/app_colors.dart';
+import 'package:chef_app/core/utils/app_strings.dart';
 import 'package:chef_app/core/utils/app_text_style.dart';
 import 'package:flutter/material.dart';
 
@@ -35,7 +37,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
         controller: widget.textcontroller,
         validator: (value) {
           if (value!.isEmpty) {
-            return 'Please enter some text';
+            return AppString.pleaseEnterValidCode.tr(context);
           }
           // return null;
         },
