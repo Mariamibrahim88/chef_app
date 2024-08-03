@@ -15,6 +15,7 @@ class AppString {
   static const String welcomeSentence = 'welcomeSentence';
   static const String phoneNumber = 'phone_number';
   static const String password = 'password';
+  static const String resetpassword = 'resetpassword';
   static const String confirmPassword = 'confirmPassword';
   static const String forgetPassword = 'forgetPassword';
   static const String newPassword = 'newPassword';

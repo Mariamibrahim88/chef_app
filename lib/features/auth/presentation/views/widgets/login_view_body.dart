@@ -52,7 +52,7 @@ class LoginViewBody extends StatelessWidget {
                   CustomTextFormField(
                     validator: (value) {
                       if (value!.isEmpty) {
-                        return AppString.pleaseEnterValidCode.tr(context);
+                        return AppString.pleaseEnterValidEmail.tr(context);
                       } else if (!value.contains('@gmail.com')) {
                         return AppString.pleaseEnterValidEmail.tr(context);
                       }

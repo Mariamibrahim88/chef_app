@@ -13,10 +13,14 @@ class AuthCubit extends Cubit<AuthState> {
 
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+  final codeController = TextEditingController();
+  final newPasswordController = TextEditingController();
+  final confirmPasswordController = TextEditingController();
 
   //var formKey = GlobalKey<FormState>();
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   GlobalKey<FormState> formTwoKey = GlobalKey<FormState>();
+  GlobalKey<FormState> formresetKey = GlobalKey<FormState>();
 
   final AuthRepo authRepo;
   Future<void> login() async {
