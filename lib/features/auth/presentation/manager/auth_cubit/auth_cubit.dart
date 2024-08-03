@@ -1,6 +1,8 @@
 import 'package:chef_app/core/database/cache_helper.dart';
+import 'package:chef_app/core/errors/failure.dart';
 import 'package:chef_app/core/remote/end_points.dart';
 import 'package:chef_app/core/service/service_locator.dart';
+import 'package:chef_app/features/auth/data/models/send_code_model.dart';
 import 'package:chef_app/features/auth/data/repos/auth_repo.dart';
 import 'package:chef_app/features/auth/presentation/manager/auth_cubit/auth_state.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +16,7 @@ class AuthCubit extends Cubit<AuthState> {
 
   //var formKey = GlobalKey<FormState>();
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  GlobalKey<FormState> formTwoKey = GlobalKey<FormState>();
 
   final AuthRepo authRepo;
   Future<void> login() async {
@@ -27,5 +30,12 @@ class AuthCubit extends Cubit<AuthState> {
           .saveData(key: ApiKeys.token, value: LoginModel.token);
       emit(AuthSuccess());
     });
+  }
+
+  Future<void> sendCode() async {
+    emit(AuthLoading());
+    final result = await authRepo.sendCode(email: emailController.text);
+    result.fold((Failure) => emit(AuthFailure(Failure.message)),
+        (SendCodeModel) => emit(AuthSuccess()));
   }
 }

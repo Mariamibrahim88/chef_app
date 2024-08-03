@@ -17,7 +17,7 @@ class AppRoutes {
   static Route? generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case Routes.initialRoute:
-        return MaterialPageRoute(builder: (_) => const LoginView());
+        return MaterialPageRoute(builder: (_) => const SendCodeView());
       case Routes.login:
         return MaterialPageRoute(builder: (_) => const LoginView());
       case Routes.changLan:

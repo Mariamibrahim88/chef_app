@@ -5,20 +5,22 @@ import 'package:chef_app/core/utils/app_text_style.dart';
 import 'package:flutter/material.dart';
 
 class CustomTextFormField extends StatefulWidget {
-  CustomTextFormField({
-    Key? key,
-    required this.hintText,
-    this.onChanged,
-    this.obscureText = true,
-    this.icon,
-    this.textcontroller,
-  }) : super(key: key);
+  CustomTextFormField(
+      {Key? key,
+      required this.hintText,
+      this.onChanged,
+      this.obscureText = true,
+      this.icon,
+      this.textcontroller,
+      this.validator})
+      : super(key: key);
 
   final String hintText;
   final Function(String)? onChanged;
   final bool obscureText;
   final IconData? icon;
   final TextEditingController? textcontroller;
+  final String? Function(String?)? validator;
 
   @override
   _CustomTextFormFieldState createState() => _CustomTextFormFieldState();
@@ -35,12 +37,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
         style: const TextStyle(color: Colors.white),
         cursorColor: AppColors.primaryColor,
         controller: widget.textcontroller,
-        validator: (value) {
-          if (value!.isEmpty) {
-            return AppString.pleaseEnterValidCode.tr(context);
-          }
-          // return null;
-        },
+        validator: widget.validator,
         onChanged: widget.onChanged,
         obscureText: widget.obscureText && _obscureText,
         decoration: InputDecoration(

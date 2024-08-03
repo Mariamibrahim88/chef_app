@@ -14,7 +14,6 @@ import 'package:chef_app/features/auth/presentation/views/widgets/dont_have_acco
 import 'package:chef_app/features/auth/presentation/views/widgets/forget_password.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class LoginViewBody extends StatelessWidget {
   const LoginViewBody({super.key});
@@ -51,6 +50,13 @@ class LoginViewBody extends StatelessWidget {
 
                   verticalSpace(35),
                   CustomTextFormField(
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return AppString.pleaseEnterValidCode.tr(context);
+                      } else if (!value.contains('@gmail.com')) {
+                        return AppString.pleaseEnterValidEmail.tr(context);
+                      }
+                    },
                     textcontroller:
                         BlocProvider.of<AuthCubit>(context).emailController,
                     hintText: AppString.email.tr(context),
@@ -58,6 +64,13 @@ class LoginViewBody extends StatelessWidget {
                   ),
                   verticalSpace(20),
                   CustomTextFormField(
+                    validator: (value) {
+                      if (value!.length < 6) {
+                        return AppString.pleaseEnterValidPassword.tr(context);
+                      } else if (value!.isEmpty) {
+                        return AppString.pleaseEnterValidPassword.tr(context);
+                      }
+                    },
                     textcontroller:
                         BlocProvider.of<AuthCubit>(context).passwordController,
                     hintText: AppString.password.tr(context),
