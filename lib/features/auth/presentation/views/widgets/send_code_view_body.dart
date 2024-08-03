@@ -30,7 +30,7 @@ class SendCodeViewBody extends StatelessWidget {
                 ShowSnackBar(
                     context, AppString.checkMail.tr(context), Colors.green);
                 // GoRouter.of(context).push('/homeView');
-                //navigate(context: context, route: Routes.changLan);
+                navigateReplacement(context: context, route: Routes.resetPassw);
               } else if (state is AuthFailure) {
                 ShowSnackBar(context,
                     AppString.pleaseEnterValidEmail.tr(context), Colors.red);

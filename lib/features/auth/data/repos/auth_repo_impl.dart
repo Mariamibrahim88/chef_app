@@ -4,6 +4,7 @@ import 'package:chef_app/core/remote/api_service.dart';
 import 'package:chef_app/core/remote/end_points.dart';
 import 'package:chef_app/core/service/service_locator.dart';
 import 'package:chef_app/features/auth/data/models/login_model.dart';
+import 'package:chef_app/features/auth/data/models/reset_pass_model.dart';
 import 'package:chef_app/features/auth/data/models/send_code_model.dart';
 import 'package:chef_app/features/auth/data/repos/auth_repo.dart';
 import 'package:dartz/dartz.dart';
@@ -47,6 +48,30 @@ class AuthRepoImpl implements AuthRepo {
         ApiKeys.email: email,
       });
       final userr = SendCodeModel.fromJson(response);
+      return Right(userr);
+    } catch (e) {
+      if (e is DioException) {
+        print('nooooooooooooooooo');
+        return (Left(ServerFailure.fromDioException(e)));
+      }
+      return (left(ServerFailure(e.toString())));
+    }
+  }
+
+  @override
+  Future<Either<Failure, resetPassModel>> resetPassword(
+      {required String email,
+      required String code,
+      required String confirmPassword,
+      required String password}) async {
+    try {
+      final response = await apiService.patch(EndPoint.resetPassword, {
+        ApiKeys.email: email,
+        ApiKeys.code: code,
+        ApiKeys.confirmPassword: confirmPassword,
+        ApiKeys.password: password,
+      });
+      final userr = resetPassModel.fromJson(response);
       return Right(userr);
     } catch (e) {
       if (e is DioException) {

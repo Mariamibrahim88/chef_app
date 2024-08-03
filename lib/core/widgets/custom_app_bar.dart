@@ -5,8 +5,9 @@ import 'package:chef_app/core/utils/app_text_style.dart';
 import 'package:flutter/material.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const CustomAppBar({super.key, required this.text});
+  const CustomAppBar({super.key, required this.text, this.onPressed});
   final String text;
+  final void Function()? onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -18,10 +19,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           size: 22,
           color: Colors.white,
         ),
-        onPressed: () {
-          // Add your desired navigation logic here
-          Navigator.of(context).pop();
-        },
+        onPressed: onPressed,
       ),
       title: Text(
         text,

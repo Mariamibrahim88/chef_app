@@ -1,5 +1,7 @@
 import 'package:chef_app/core/local/app_local.dart';
+import 'package:chef_app/core/routes/app_routes.dart';
 import 'package:chef_app/core/utils/app_strings.dart';
+import 'package:chef_app/core/utils/commons.dart';
 import 'package:chef_app/core/widgets/custom_app_bar.dart';
 import 'package:chef_app/features/auth/presentation/views/widgets/reset_view_pass_body.dart';
 import 'package:flutter/material.dart';
@@ -12,6 +14,9 @@ class ResetPasswordView extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         appBar: CustomAppBar(
+          onPressed: () {
+            navigateReplacement(context: context, route: Routes.sendCode);
+          },
           text: AppString.createYourNewPassword.tr(context),
         ),
         body: const ResetPasswordViewBody(),

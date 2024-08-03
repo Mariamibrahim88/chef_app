@@ -1,7 +1,9 @@
 import 'package:chef_app/core/local/app_local.dart';
+import 'package:chef_app/core/routes/app_routes.dart';
 import 'package:chef_app/core/utils/app_colors.dart';
 import 'package:chef_app/core/utils/app_strings.dart';
 import 'package:chef_app/core/utils/app_text_style.dart';
+import 'package:chef_app/core/utils/commons.dart';
 import 'package:chef_app/core/widgets/custom_app_bar.dart';
 import 'package:chef_app/features/auth/presentation/views/widgets/send_code_view_body.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +16,9 @@ class SendCodeView extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         appBar: CustomAppBar(
+          onPressed: () {
+            navigateReplacement(context: context, route: Routes.login);
+          },
           text: AppString.forgetPassword.tr(context),
         ),
         body: const SendCodeViewBody(),

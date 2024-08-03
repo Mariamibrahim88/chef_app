@@ -13,6 +13,13 @@ class ApiService {
     return response.data;
   }
 
+  // patch request
+
+  Future patch(String endPoint, dynamic data) async {
+    var response = await _dio.patch('$_baseUrl$endPoint', data: data);
+    return response.data;
+  }
+
   Future<List<dynamic>> get({required String endPoint}) async {
     var response = await _dio.get('$_baseUrl$endPoint');
     return response.data;

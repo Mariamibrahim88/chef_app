@@ -12,7 +12,7 @@ class ForgetPassword extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        navigate(context: context, route: Routes.sendCode);
+        navigateReplacement(context: context, route: Routes.sendCode);
       },
       child: Container(
         child: Align(

@@ -1,6 +1,8 @@
 import 'package:chef_app/core/local/app_local.dart';
+import 'package:chef_app/core/routes/app_routes.dart';
 import 'package:chef_app/core/utils/app_spacing.dart';
 import 'package:chef_app/core/utils/app_strings.dart';
+import 'package:chef_app/core/utils/commons.dart';
 import 'package:chef_app/core/widgets/custom_loading.dart';
 import 'package:chef_app/core/widgets/custom_snack_bar.dart';
 import 'package:chef_app/core/widgets/custom_text_field.dart';
@@ -23,16 +25,15 @@ class ResetPasswordViewBody extends StatelessWidget {
         child: Center(
           child: BlocConsumer<AuthCubit, AuthState>(
             listener: (context, state) {
-              // if (state is AuthSuccess) {
-              //   ShowSnackBar(
-              //       context, AppString.checkMail.tr(context), Colors.green);
-              //   // GoRouter.of(context).push('/homeView');
-              //   //navigate(context: context, route: Routes.changLan);
-              // } else if (state is AuthFailure) {
-              //   ShowSnackBar(context,
-              //       AppString.pleaseEnterValidEmail.tr(context), Colors.red);
-              //   // state.message.tr(context)
-              // }
+              if (state is AuthSuccess) {
+                ShowSnackBar(
+                    context, AppString.checkMail.tr(context), Colors.green);
+                // GoRouter.of(context).push('/homeView');
+                navigateReplacement(context: context, route: Routes.login);
+              } else if (state is AuthFailure) {
+                ShowSnackBar(context, state.message.tr(context), Colors.red);
+                // state.message.tr(context)
+              }
             },
             builder: (context, state) {
               return Form(
@@ -111,7 +112,8 @@ class ResetPasswordViewBody extends StatelessWidget {
                                   .formresetKey
                                   .currentState!
                                   .validate()) {
-                                // BlocProvider.of<AuthCubit>(context).sendCode();
+                                BlocProvider.of<AuthCubit>(context)
+                                    .resetPassword();
                               }
                             })
                   ],
