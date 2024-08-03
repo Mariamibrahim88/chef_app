@@ -4,6 +4,7 @@ import 'package:chef_app/core/utils/app_colors.dart';
 import 'package:chef_app/core/utils/app_spacing.dart';
 import 'package:chef_app/core/utils/app_strings.dart';
 import 'package:chef_app/core/utils/commons.dart';
+import 'package:chef_app/core/widgets/custom_loading.dart';
 import 'package:chef_app/core/widgets/custom_snack_bar.dart';
 import 'package:chef_app/core/widgets/custom_text_field.dart';
 import 'package:chef_app/features/auth/presentation/manager/auth_cubit/auth_cubit.dart';
@@ -13,6 +14,7 @@ import 'package:chef_app/features/auth/presentation/views/widgets/dont_have_acco
 import 'package:chef_app/features/auth/presentation/views/widgets/forget_password.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class LoginViewBody extends StatelessWidget {
   const LoginViewBody({super.key});
@@ -21,7 +23,8 @@ class LoginViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<AuthCubit, AuthState>(listener: (context, state) {
       if (state is AuthSuccess) {
-        ShowSnackBar(context, 'success', Colors.green);
+        ShowSnackBar(
+            context, AppString.loginSucessfully.tr(context), Colors.green);
         // GoRouter.of(context).push('/homeView');
         navigate(context: context, route: Routes.changLan);
       } else if (state is AuthFailure) {
@@ -71,16 +74,18 @@ class LoginViewBody extends StatelessWidget {
                   //         color: Color.fromARGB(255, 110, 171, 112),
                   //       ))
                   //     :
-                  CustomButton(
-                      text: AppString.signIn.tr(context),
-                      onPressed: () {
-                        if (BlocProvider.of<AuthCubit>(context)
-                            .formKey
-                            .currentState!
-                            .validate()) {
-                          BlocProvider.of<AuthCubit>(context).login();
-                        }
-                      }),
+                  state is AuthLoading
+                      ? const CustomLoading()
+                      : CustomButton(
+                          text: AppString.signIn.tr(context),
+                          onPressed: () {
+                            if (BlocProvider.of<AuthCubit>(context)
+                                .formKey
+                                .currentState!
+                                .validate()) {
+                              BlocProvider.of<AuthCubit>(context).login();
+                            }
+                          }),
                   verticalSpace(20),
                   // const TermsAndConditionsTerm(),
                   // verticalSpace(40),

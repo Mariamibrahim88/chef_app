@@ -1,6 +1,8 @@
 import 'package:chef_app/core/local/app_local.dart';
+import 'package:chef_app/core/routes/app_routes.dart';
 import 'package:chef_app/core/utils/app_colors.dart';
 import 'package:chef_app/core/utils/app_strings.dart';
+import 'package:chef_app/core/utils/commons.dart';
 import 'package:flutter/material.dart';
 
 class ForgetPassword extends StatelessWidget {
@@ -10,7 +12,7 @@ class ForgetPassword extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        print('Forget Password?');
+        navigate(context: context, route: Routes.sendCode);
       },
       child: Container(
         child: Align(
