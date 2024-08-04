@@ -25,7 +25,7 @@ class LoginViewBody extends StatelessWidget {
         ShowSnackBar(
             context, AppString.loginSucessfully.tr(context), Colors.green);
         // GoRouter.of(context).push('/homeView');
-        navigate(context: context, route: Routes.changLan);
+        navigate(context: context, route: Routes.home);
       } else if (state is AuthFailure) {
         ShowSnackBar(context, state.message, Colors.red);
       }

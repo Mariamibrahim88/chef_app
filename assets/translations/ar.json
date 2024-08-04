@@ -25,6 +25,7 @@
     "editProfile": "تعديل الملف الشخصي",
     "loginSucessfully": "تم تسجيل الدخول بنجاح",
     "loginFailed": "حدث خطأ حاول مرة أخري",
+    "deleteMeal":"هل أنت متأكد أنك تريد حذف هذا العنصر؟",
     "resetpassword":"تغير كلمة السر",
     "please_enter_email": "من فضلك أدخل بريد الكتروني صالح",
     "please_enter_valid_password": "من فضلك أدخل كلمة سر صالحة",

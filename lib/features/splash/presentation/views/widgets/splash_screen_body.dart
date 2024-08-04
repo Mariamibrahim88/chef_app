@@ -1,5 +1,8 @@
+import 'package:chef_app/core/database/cache_helper.dart';
 import 'package:chef_app/core/local/app_local.dart';
+import 'package:chef_app/core/remote/end_points.dart';
 import 'package:chef_app/core/routes/app_routes.dart';
+import 'package:chef_app/core/service/service_locator.dart';
 import 'package:chef_app/core/utils/app_spacing.dart';
 import 'package:chef_app/core/utils/app_strings.dart';
 import 'package:chef_app/core/utils/commons.dart';
@@ -46,9 +49,14 @@ class _SplashScreenViewBodyState extends State<SplashScreenViewBody> {
   }
 
   void navigateToHome() {
-    Future.delayed(const Duration(seconds: 3)).then((value) {
-      // Navigator.pushNamed(context, Routes.changLan);
-      navigate(context: context, route: Routes.changLan);
+    Future.delayed(const Duration(seconds: 3)).then((value) async {
+      //if method return null then user don't login in this app before and token not saved
+      await sl<CacheHelper>().getData(
+                key: ApiKeys.token,
+              ) ==
+              null
+          ? navigate(context: context, route: Routes.changLan)
+          : navigate(context: context, route: Routes.home);
     });
   }
 }
