@@ -28,6 +28,7 @@
     "deleteMeal":"Are you sure you want to delete this item?",
     "confirm": "Confirm",
     "please_enter_email": "Please Enter valid E-mail",
+    "category":"Category",
     "please_enter_valid_password": "Please Enter valid password",
     "please_enter_phone": "Please Enter valid Phone Number",
     "please_enter_name": "Please Enter valid Name",

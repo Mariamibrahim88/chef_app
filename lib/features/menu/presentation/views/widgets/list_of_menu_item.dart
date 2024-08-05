@@ -7,7 +7,7 @@ class ListOfItemMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-        itemCount: 5,
+        itemCount: 2,
         itemBuilder: (context, index) {
           return const menuItem();
         });

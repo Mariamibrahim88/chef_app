@@ -3,6 +3,7 @@ import 'package:chef_app/core/utils/app_colors.dart';
 import 'package:chef_app/core/utils/app_strings.dart';
 import 'package:chef_app/core/utils/app_text_style.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomTextFormField extends StatefulWidget {
   CustomTextFormField(
@@ -32,7 +33,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 390,
+      width: 390.w,
       child: TextFormField(
         style: const TextStyle(color: Colors.white),
         cursorColor: AppColors.primaryColor,

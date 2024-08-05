@@ -48,6 +48,7 @@ class AppString {
   static const String mealPrice = 'mealPrice';
   static const String mealNumber = 'mealNumber';
   static const String mealQuantity = 'mealQuantity';
+  static const String category = 'category';
   static const String upladPhoto = 'upladPhoto';
   static const String addToMenu = 'addToMenu';
   static const String deleteMeal = 'deleteMeal';

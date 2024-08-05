@@ -1,5 +1,7 @@
 import 'package:chef_app/core/local/app_local.dart';
+import 'package:chef_app/core/routes/app_routes.dart';
 import 'package:chef_app/core/utils/app_strings.dart';
+import 'package:chef_app/core/utils/commons.dart';
 import 'package:chef_app/features/auth/presentation/views/widgets/custom_button.dart';
 import 'package:chef_app/features/menu/presentation/views/widgets/list_of_menu_item.dart';
 import 'package:chef_app/features/menu/presentation/views/widgets/menu_item.dart';
@@ -20,7 +22,9 @@ class MenuViewBody extends StatelessWidget {
           children: [
             CustomButton(
               text: AppString.addToMenu.tr(context),
-              onPressed: () {},
+              onPressed: () {
+                navigate(context: context, route: Routes.addMeal);
+              },
             ),
             const Expanded(
               child: ListOfItemMenu(),

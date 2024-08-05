@@ -27,6 +27,7 @@
     "loginFailed": "حدث خطأ حاول مرة أخري",
     "deleteMeal":"هل أنت متأكد أنك تريد حذف هذا العنصر؟",
     "resetpassword":"تغير كلمة السر",
+    "category":"الفئة",
     "please_enter_email": "من فضلك أدخل بريد الكتروني صالح",
     "please_enter_valid_password": "من فضلك أدخل كلمة سر صالحة",
     "please_enter_phone": "من فضلك أدخل رقم هاتف صالح",

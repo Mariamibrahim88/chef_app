@@ -2,6 +2,7 @@ import 'package:chef_app/features/auth/presentation/views/login_view.dart';
 import 'package:chef_app/features/auth/presentation/views/reset_password_view.dart';
 import 'package:chef_app/features/auth/presentation/views/send_code_view.dart';
 import 'package:chef_app/features/home/presentation/views/home_view.dart';
+import 'package:chef_app/features/menu/presentation/views/add_meal_view.dart';
 import 'package:chef_app/features/menu/presentation/views/menu_view.dart';
 import 'package:chef_app/features/profile/presentation/views/profile_view.dart';
 import 'package:chef_app/features/splash/presentation/views/change_lang_view.dart';
@@ -17,6 +18,7 @@ class Routes {
   static const String home = '/home';
   static const String profile = '/profile';
   static const String menu = '/menu';
+  static const String addMeal = '/addMeal';
 }
 
 class AppRoutes {
@@ -38,6 +40,8 @@ class AppRoutes {
         return MaterialPageRoute(builder: (_) => const ProfileView());
       case Routes.menu:
         return MaterialPageRoute(builder: (_) => const MenuView());
+      case Routes.addMeal:
+        return MaterialPageRoute(builder: (_) => const AddMealView());
 
       default:
         return MaterialPageRoute(builder: (_) => const Scaffold());
