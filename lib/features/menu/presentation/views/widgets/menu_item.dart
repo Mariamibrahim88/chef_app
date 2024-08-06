@@ -3,15 +3,22 @@ import 'package:chef_app/core/local/app_local.dart';
 import 'package:chef_app/core/utils/app_colors.dart';
 import 'package:chef_app/core/utils/app_strings.dart';
 import 'package:chef_app/core/utils/app_text_style.dart';
+import 'package:chef_app/features/menu/data/models/meal_model.dart';
+import 'package:chef_app/features/menu/presentation/manager/cubit/menu_cubit.dart';
+import 'package:chef_app/features/menu/presentation/manager/cubit/menu_state.dart';
 import 'package:chef_app/features/menu/presentation/views/widgets/custom_alert_dialog.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shimmer/shimmer.dart';
 
 class menuItem extends StatelessWidget {
   const menuItem({
     super.key,
+    required this.mealModel,
   });
+
+  final MealModel mealModel;
 
   @override
   Widget build(BuildContext context) {
@@ -27,8 +34,7 @@ class menuItem extends StatelessWidget {
             child: Row(
               children: [
                 CachedNetworkImage(
-                  imageUrl:
-                      'https://images.unsplash.com/photo-1430163393927-3dab9af7ea38?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                  imageUrl: mealModel.images[0],
                   width: 60.w,
                   height: 70.h,
                   fit: BoxFit.fill,
@@ -55,31 +61,40 @@ class menuItem extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('Kitchen',
+                      Text(mealModel.name,
                           style: Theme.of(context)
                               .textTheme
                               .displayMedium!
                               .copyWith(fontWeight: FontWeight.bold)),
-                      Text('Kitchen Description',
+                      Text(mealModel.description,
                           style: Theme.of(context).textTheme.displaySmall),
-                      Text('200',
+                      Text(mealModel.price.toString(),
                           style: Theme.of(context).textTheme.displaySmall),
                     ],
                   ),
                 ),
                 const Spacer(),
-                Card(
-                    child: IconButton(
-                  icon: const Icon(Icons.cancel),
-                  onPressed: () {
-                    showDialog(
-                        context: context,
-                        builder: (context) {
-                          return CustomAlertDialog(
-                              text: AppString.deleteMeal.tr(context));
-                        });
+                BlocBuilder<MenuCubit, MenuState>(
+                  builder: (context, state) {
+                    return Card(
+                        child: IconButton(
+                      icon: const Icon(Icons.cancel),
+                      onPressed: () {
+                        showDialog(
+                            context: context,
+                            builder: (context) {
+                              return CustomAlertDialog(
+                                text: AppString.deleteMeal.tr(context),
+                                confirmAction: () {
+                                  BlocProvider.of<MenuCubit>(context)
+                                      .deleteMeal(mealModel.id);
+                                },
+                              );
+                            });
+                      },
+                    ));
                   },
-                ))
+                )
               ],
             ),
           ),

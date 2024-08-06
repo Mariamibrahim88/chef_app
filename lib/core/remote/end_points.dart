@@ -13,6 +13,8 @@ class EndPoint {
     return '$getChef$id';
   }
 
+  ///meal/add-to-menu
+
   static String getchefmeal(id) {
     return 'chef/get-chef/$id/meals';
   }
@@ -29,4 +31,5 @@ class ApiKeys {
   static const String code = 'code';
   static const String email = 'email';
   static const String password = 'password';
+  static const String id = 'id';
 }

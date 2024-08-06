@@ -8,8 +8,10 @@ class CustomAlertDialog extends StatelessWidget {
   const CustomAlertDialog({
     super.key,
     required this.text,
+    required this.confirmAction,
   });
   final String text;
+  final VoidCallback confirmAction;
 
   @override
   Widget build(BuildContext context) {

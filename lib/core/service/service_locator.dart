@@ -8,6 +8,8 @@ import 'package:chef_app/features/auth/data/repos/auth_repo.dart';
 import 'package:chef_app/features/auth/data/repos/auth_repo_impl.dart';
 import 'package:chef_app/features/auth/presentation/manager/auth_cubit/auth_cubit.dart';
 import 'package:chef_app/features/home/presentation/manager/cubit/home_cubit.dart';
+import 'package:chef_app/features/menu/data/repos/menu_repos.dart';
+import 'package:chef_app/features/menu/data/repos/menu_repos_imp.dart';
 import 'package:chef_app/features/menu/presentation/manager/cubit/menu_cubit.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
@@ -18,12 +20,18 @@ void initServiceLocator() {
   sl.registerLazySingleton(() => CacheHelper());
   sl.registerLazySingleton(() => AuthCubit(sl()));
   sl.registerLazySingleton(() => HomeCubit());
-  sl.registerLazySingleton(() => MenuCubit());
+  sl.registerLazySingleton(() => MenuCubit(sl()));
   sl.registerSingleton<ApiService>(ApiService(Dio()));
   //sl.registerSingleton(() => AuthRepoImpl());
   //sl.registerLazySingleton<AuthRepo>(() => AuthRepoImpl());
   sl.registerLazySingleton<ApiConsumer>(() => DioConsumer(sl()));
   sl.registerSingleton<AuthRepoImpl>(AuthRepoImpl(sl.get<ApiService>()));
+  //menuRepoImp
+  sl.registerSingleton<menuRepoImp>(menuRepoImp(sl.get<ApiService>()));
+  //sl.registerLazySingleton<MenuRepos>(() => menuRepoImp(sl.get<ApiService>()));
+
+  //sl.registerSingleton(() => menuRepoImp(sl.get()));
+
   sl.registerLazySingleton(() => Dio());
   sl.registerLazySingleton(() => ApiInterceptors());
   sl.registerLazySingleton(() => GlobalCubitCubit());

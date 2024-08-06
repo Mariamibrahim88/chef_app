@@ -8,8 +8,11 @@ class ApiService {
 
 //post request
 
-  Future post(String endPoint, dynamic data) async {
-    var response = await _dio.post('$_baseUrl$endPoint', data: data);
+  Future post(String endPoint, {dynamic data, bool isFormData = false}) async {
+    var response = await _dio.post(
+      '$_baseUrl$endPoint',
+      data: isFormData ? FormData.fromMap(data) : data,
+    );
     return response.data;
   }
 
@@ -20,10 +23,22 @@ class ApiService {
     return response.data;
   }
 
-  Future<List<dynamic>> get({required String endPoint}) async {
+  Future get(String endPoint) async {
     var response = await _dio.get('$_baseUrl$endPoint');
     return response.data;
-    //return response;
+  }
+
+  // Future<List<dynamic>> get({required String endPoint}) async {
+  //   var response = await _dio.get('$_baseUrl$endPoint');
+  //   return response.data;
+  //   //return response;
+  // }
+
+  Future delete(String endPoint,
+      {Object? data, Map<String, dynamic>? queryParameters}) async {
+    final res = await _dio.delete('$_baseUrl$endPoint',
+        data: data, queryParameters: queryParameters);
+    return res.data;
   }
 
   // Future<MovieModel>>

@@ -3,10 +3,13 @@ import 'package:chef_app/core/utils/app_colors.dart';
 import 'package:chef_app/core/utils/app_spacing.dart';
 import 'package:chef_app/core/utils/app_strings.dart';
 import 'package:chef_app/core/utils/commons.dart';
+import 'package:chef_app/core/widgets/custom_loading.dart';
+import 'package:chef_app/core/widgets/custom_snack_bar.dart';
 import 'package:chef_app/core/widgets/custom_text_field.dart';
 import 'package:chef_app/features/auth/presentation/views/widgets/custom_button.dart';
 import 'package:chef_app/features/menu/presentation/manager/cubit/menu_cubit.dart';
 import 'package:chef_app/features/menu/presentation/manager/cubit/menu_state.dart';
+import 'package:chef_app/features/menu/presentation/views/widgets/custom_alert_dialog.dart';
 import 'package:chef_app/features/menu/presentation/views/widgets/drop_down_button.dart';
 import 'package:chef_app/features/menu/presentation/views/widgets/image_picker_dialog.dart';
 import 'package:flutter/material.dart';
@@ -25,7 +28,23 @@ class AddMealViewBody extends StatelessWidget {
         child: Center(
           child: BlocConsumer<MenuCubit, MenuState>(
             listener: (context, state) {
-              // TODO: implement listener
+              if (state is AddMealSuccessState) {
+                ShowSnackBar(
+                    context, AppString.mealAddedSucessfully, Colors.green);
+                Navigator.pop(context);
+                // showDialog(
+                //     context: context,
+                //     builder: (context) {
+                //       return CustomAlertDialog(
+                //           text: AppString.mealAddedSucessfully.tr(context),
+                //           confirmAction: () {
+                //             Navigator.pop(context);
+                //             //Navigator.pop(context);
+                //           });
+                //     });
+              } else if (state is AddMealFailureState) {
+                ShowSnackBar(context, state.message, Colors.red);
+              }
             },
             builder: (context, state) {
               final menu = BlocProvider.of<MenuCubit>(context);
@@ -48,13 +67,15 @@ class AddMealViewBody extends StatelessWidget {
                                   return imagePickerDialog(
                                     cameraOnTap: () {
                                       Navigator.pop(context);
-                                      pickImage(source: ImageSource.camera);
+                                      pickImage(source: ImageSource.camera)
+                                          .then((value) => menu.image = value);
                                       // Capture a photo.
                                     },
                                     galleryOnTap: () {
                                       Navigator.pop(context);
 
-                                      pickImage(source: ImageSource.gallery);
+                                      pickImage(source: ImageSource.gallery)
+                                          .then((value) => menu.image = value);
                                     },
                                   );
                                 });
@@ -131,7 +152,7 @@ class AddMealViewBody extends StatelessWidget {
                             ),
                           ],
                         ),
-                        Spacer(),
+                        const Spacer(),
                         Row(
                           children: [
                             Radio(
@@ -149,9 +170,15 @@ class AddMealViewBody extends StatelessWidget {
                       ],
                     ),
                     verticalSpace(25),
-                    CustomButton(
-                        text: AppString.addDishToMenu.tr(context),
-                        onPressed: () {})
+                    state is AddMealLoadingState
+                        ? CustomLoading()
+                        : CustomButton(
+                            text: AppString.addDishToMenu.tr(context),
+                            onPressed: () {
+                              //if (menu.formKey.currentState!.validate()) {
+                              menu.addMealToMenu();
+                              //}
+                            })
                   ],
                 ),
               );

@@ -21,7 +21,8 @@ class AuthRepoImpl implements AuthRepo {
       // final response = await sl<ApiConsumer>().post(EndPoint.chefsignIn, data: {
       //   'email': email,
       //   'password': password,
-      final response = await apiService.post(EndPoint.chefsignIn, {
+      final response =
+          await apiService.post(EndPoint.chefsignIn, isFormData: false, data: {
         'email': email,
         'password': password,
       });
@@ -44,7 +45,8 @@ class AuthRepoImpl implements AuthRepo {
   Future<Either<Failure, SendCodeModel>> sendCode(
       {required String email}) async {
     try {
-      final response = await apiService.post(EndPoint.sendCode, {
+      final response =
+          await apiService.post(EndPoint.sendCode, isFormData: false, data: {
         ApiKeys.email: email,
       });
       final userr = SendCodeModel.fromJson(response);

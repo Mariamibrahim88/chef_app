@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -19,3 +20,14 @@ Future<XFile?> pickImage({required ImageSource source}) async {
     return null;
   }
 }
+
+Future<MultipartFile> uploadImageToApi(XFile image) async {
+  return MultipartFile.fromFile(image.path,
+      filename: image.path.split('/').last);
+}
+
+
+// Future uploadImageToAPI(XFile image) async {
+//   return MultipartFile.fromFile(image.path,
+//       filename: image.path.split('/').last);
+// }
