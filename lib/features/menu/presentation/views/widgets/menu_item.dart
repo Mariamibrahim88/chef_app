@@ -62,19 +62,25 @@ class menuItem extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(mealModel.name,
+                          overflow: TextOverflow.ellipsis,
                           style: Theme.of(context)
                               .textTheme
                               .displayMedium!
                               .copyWith(fontWeight: FontWeight.bold)),
-                      Text(mealModel.description,
-                          style: Theme.of(context).textTheme.displaySmall),
-                      Text(mealModel.price.toString(),
+                      SizedBox(
+                        //width: 180.w,
+                        child: Text(mealModel.description,
+                            overflow: TextOverflow.ellipsis,
+                            style: Theme.of(context).textTheme.displaySmall),
+                      ),
+                      Text(
+                          mealModel.price.toString() + AppString.le.tr(context),
                           style: Theme.of(context).textTheme.displaySmall),
                     ],
                   ),
                 ),
                 const Spacer(),
-                BlocBuilder<MenuCubit, MenuState>(
+                BlocConsumer<MenuCubit, MenuState>(
                   builder: (context, state) {
                     return Card(
                         child: IconButton(
@@ -88,11 +94,17 @@ class menuItem extends StatelessWidget {
                                 confirmAction: () {
                                   BlocProvider.of<MenuCubit>(context)
                                       .deleteMeal(mealModel.id);
+                                  Navigator.of(context).pop();
                                 },
                               );
                             });
                       },
                     ));
+                  },
+                  listener: (BuildContext context, MenuState state) {
+                    if (state is DeleteMealSuccessState) {
+                      BlocProvider.of<MenuCubit>(context).getMeals();
+                    }
                   },
                 )
               ],

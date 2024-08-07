@@ -17,16 +17,17 @@ class menuRepoImp implements MenuRepos {
 
   menuRepoImp(this.apiService);
   @override
-  Future<Either<Failure, menuModel>> addMealToMenu(
-      {required XFile? image,
-      required String mealName,
-      required String howToSell,
-      required String mealDesc,
-      required String category,
-      required double mealPrice}) async {
+  Future<Either<Failure, menuModel>> addMealToMenu({
+    required String mealName,
+    required String mealDesc,
+    required double mealPrice,
+    required String howToSell,
+    required XFile? image,
+    required String category,
+  }) async {
     try {
       final MultipartFile uploadedImage = await uploadImageToApi(image!);
-      final response = await apiService.post(
+      final response = await sl<ApiConsumer>().post(
         EndPoint.addMeal,
         isFormData: true,
         data: {
@@ -56,12 +57,12 @@ class menuRepoImp implements MenuRepos {
   @override
   Future<Either<Failure, String>> deleteMeal({required String id}) async {
     try {
-      final response = await apiService.delete(EndPoint.deletemeal(id));
+      final response = await sl<ApiConsumer>().delete(EndPoint.deletemeal(id));
 
       return Right(response[ApiKeys.message]);
     } catch (e) {
       if (e is DioException) {
-        print('nooooooooooooooooo');
+        print('nooo deleted');
         return (Left(ServerFailure.fromDioException(e)));
       }
       return (left(ServerFailure(e.toString())));
@@ -69,16 +70,16 @@ class menuRepoImp implements MenuRepos {
   }
 
   @override
-  Future<Either<Failure, GetAllMealsModel>> getChefsMeals() async {
+  Future<Either<Failure, GetAllMealsModel>> getMeals() async {
     try {
-      final response = await apiService.get(
+      final response = await sl<ApiConsumer>().get(
         EndPoint.getchefmeal(sl<CacheHelper>().getData(key: ApiKeys.id)),
       );
 
       return Right(GetAllMealsModel.fromJson(response));
     } catch (e) {
       if (e is DioException) {
-        print('nooooooooooooooooo');
+        print('noooo get meals');
         return (Left(ServerFailure.fromDioException(e)));
       }
       return (left(ServerFailure(e.toString())));

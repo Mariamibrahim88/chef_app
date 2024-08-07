@@ -27,8 +27,9 @@ void initServiceLocator() {
   sl.registerLazySingleton<ApiConsumer>(() => DioConsumer(sl()));
   sl.registerSingleton<AuthRepoImpl>(AuthRepoImpl(sl.get<ApiService>()));
   //menuRepoImp
-  sl.registerSingleton<menuRepoImp>(menuRepoImp(sl.get<ApiService>()));
+  //sl.registerSingleton<menuRepoImp>(menuRepoImp(sl.get<ApiService>()));
   //sl.registerLazySingleton<MenuRepos>(() => menuRepoImp(sl.get<ApiService>()));
+  sl.registerLazySingleton(() => menuRepoImp(sl()));
 
   //sl.registerSingleton(() => menuRepoImp(sl.get()));
 

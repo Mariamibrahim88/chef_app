@@ -2,6 +2,7 @@ import 'package:chef_app/core/errors/failure.dart';
 import 'package:chef_app/features/menu/data/models/meal_model.dart';
 import 'package:chef_app/features/menu/data/models/menu_model.dart';
 import 'package:chef_app/features/menu/data/repos/menu_repos.dart';
+import 'package:chef_app/features/menu/data/repos/menu_repos_imp.dart';
 import 'package:chef_app/features/menu/presentation/manager/cubit/menu_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -10,6 +11,7 @@ import 'package:image_picker/image_picker.dart';
 class MenuCubit extends Cubit<MenuState> {
   MenuCubit(this.menuRepos) : super(MenuInitial());
 
+  //final MenuRepos menuRepos;
   final MenuRepos menuRepos;
 
   XFile? image;
@@ -21,7 +23,6 @@ class MenuCubit extends Cubit<MenuState> {
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   List categoryList = [
-    'meat',
     'Beef',
     'Chicken',
     'Fish',
@@ -41,7 +42,7 @@ class MenuCubit extends Cubit<MenuState> {
     'Gluten_free'
   ];
 
-  String selectedItem = "Fish";
+  String selectedItem = "Beef";
 
   void changItem(item) {
     selectedItem = item;
@@ -55,16 +56,23 @@ class MenuCubit extends Cubit<MenuState> {
     emit(ChangeGroupValState());
   }
 
+  void uploadMealPic(XFile val) {
+    image = val;
+    emit(UploadImage());
+  }
+
   void addMealToMenu() async {
     emit(AddMealLoadingState());
 
     final result = await menuRepos.addMealToMenu(
-        image: image!,
-        mealName: mealNameController.text,
-        howToSell: groupVal,
-        mealDesc: mealDescController.text,
-        category: selectedItem,
-        mealPrice: double.parse(mealPriceController.text));
+      mealName: mealNameController.text,
+      mealDesc: mealDescController.text,
+      mealPrice: double.parse(mealPriceController.text),
+      howToSell: groupVal,
+      image: image,
+      category: selectedItem,
+    );
+
     result.fold((Failure) => emit(AddMealFailureState(Failure.message)),
         (menuModel) => emit(AddMealSuccessState()));
   }
@@ -80,7 +88,7 @@ class MenuCubit extends Cubit<MenuState> {
   Future<void> getMeals() async {
     emit(GetMealLoadingState());
 
-    final result = await menuRepos.getChefsMeals();
+    final result = await menuRepos.getMeals();
     result.fold((Failure) => emit(GetMealFailureState(Failure.message)), (r) {
       meals = r.meals;
 

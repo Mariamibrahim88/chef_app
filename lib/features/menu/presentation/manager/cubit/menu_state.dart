@@ -36,6 +36,7 @@ final class GetMealFailureState extends MenuState {
   GetMealFailureState(this.message);
 }
 
+class UploadImage extends MenuState {}
 
 
 //addMeal

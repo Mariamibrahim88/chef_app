@@ -6,17 +6,17 @@ import 'package:image_picker/image_picker.dart';
 
 abstract class MenuRepos {
   Future<Either<Failure, menuModel>> addMealToMenu({
-    required XFile? image,
     required String mealName,
-    required String howToSell,
     required String mealDesc,
-    required String category,
     required double mealPrice,
+    required String howToSell,
+    required XFile? image,
+    required String category,
   });
 
   Future<Either<Failure, String>> deleteMeal({
     required String id,
   });
 
-  Future<Either<Failure, GetAllMealsModel>> getChefsMeals();
+  Future<Either<Failure, GetAllMealsModel>> getMeals();
 }

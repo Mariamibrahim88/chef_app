@@ -1,4 +1,5 @@
 import 'package:chef_app/core/local/app_local.dart';
+import 'package:chef_app/core/routes/app_routes.dart';
 import 'package:chef_app/core/utils/app_colors.dart';
 import 'package:chef_app/core/utils/app_spacing.dart';
 import 'package:chef_app/core/utils/app_strings.dart';
@@ -10,6 +11,7 @@ import 'package:chef_app/features/auth/presentation/views/widgets/custom_button.
 import 'package:chef_app/features/menu/presentation/manager/cubit/menu_cubit.dart';
 import 'package:chef_app/features/menu/presentation/manager/cubit/menu_state.dart';
 import 'package:chef_app/features/menu/presentation/views/widgets/custom_alert_dialog.dart';
+import 'package:chef_app/features/menu/presentation/views/widgets/custom_file_image.dart';
 import 'package:chef_app/features/menu/presentation/views/widgets/drop_down_button.dart';
 import 'package:chef_app/features/menu/presentation/views/widgets/image_picker_dialog.dart';
 import 'package:flutter/material.dart';
@@ -29,19 +31,24 @@ class AddMealViewBody extends StatelessWidget {
           child: BlocConsumer<MenuCubit, MenuState>(
             listener: (context, state) {
               if (state is AddMealSuccessState) {
-                ShowSnackBar(
-                    context, AppString.mealAddedSucessfully, Colors.green);
+                // ShowSnackBar(
+                //     context, AppString.mealAddedSucessfully, Colors.green);
+                //Navigator.pop(context);
+
+                showDialog(
+                    context: context,
+                    builder: (context) {
+                      return CustomAlertDialog(
+                          text: AppString.mealAddedSucessfully.tr(context),
+                          confirmAction: () {
+                            //Navigator.pop(context);
+                          });
+                    });
                 Navigator.pop(context);
-                // showDialog(
-                //     context: context,
-                //     builder: (context) {
-                //       return CustomAlertDialog(
-                //           text: AppString.mealAddedSucessfully.tr(context),
-                //           confirmAction: () {
-                //             Navigator.pop(context);
-                //             //Navigator.pop(context);
-                //           });
-                //     });
+                BlocProvider.of<MenuCubit>(context).getMeals();
+                navigateReplacement(context: context, route: Routes.home);
+
+                // navigate(context: context, route: Routes.home);
               } else if (state is AddMealFailureState) {
                 ShowSnackBar(context, state.message, Colors.red);
               }
@@ -53,8 +60,9 @@ class AddMealViewBody extends StatelessWidget {
                 child: Column(
                   children: [
                     Stack(children: [
-                      Image.asset('assets/images/Ellipse.png',
-                          height: 200, width: 200),
+                      CustomFileImage(
+                        image: menu.image,
+                      ),
                       Positioned.directional(
                         textDirection: Directionality.of(context),
                         bottom: 25,
@@ -68,14 +76,16 @@ class AddMealViewBody extends StatelessWidget {
                                     cameraOnTap: () {
                                       Navigator.pop(context);
                                       pickImage(source: ImageSource.camera)
-                                          .then((value) => menu.image = value);
+                                          .then((value) =>
+                                              menu.uploadMealPic(value!));
                                       // Capture a photo.
                                     },
                                     galleryOnTap: () {
                                       Navigator.pop(context);
 
                                       pickImage(source: ImageSource.gallery)
-                                          .then((value) => menu.image = value);
+                                          .then((value) =>
+                                              menu.uploadMealPic(value!));
                                     },
                                   );
                                 });

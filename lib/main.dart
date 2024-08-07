@@ -16,7 +16,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   initServiceLocator();
   await sl<CacheHelper>().init();
-  await sl<CacheHelper>().removeData(key: ApiKeys.token);
+  //await sl<CacheHelper>().removeData(key: ApiKeys.token);
 
   await ScreenUtil.ensureScreenSize();
   runApp(MultiBlocProvider(
@@ -32,13 +32,14 @@ void main() async {
         // create: (context) => sl<AuthCubit>(),
         create: (create) => sl<HomeCubit>(),
       ),
+      // BlocProvider(
+      //   // create: (context) => sl<AuthCubit>(),
+      //   create: (create) => sl<MenuCubit>()..getMeals(),
+      // ),
       BlocProvider(
         // create: (context) => sl<AuthCubit>(),
-        create: (create) => sl<MenuCubit>()..getMeals(),
-      ),
-      BlocProvider(
-        // create: (context) => sl<AuthCubit>(),
-        create: (create) => MenuCubit(sl.get<menuRepoImp>()),
+        //create: (context) => sl<MenuCubit>()..getMeals(),
+        create: (create) => MenuCubit(sl.get<menuRepoImp>())..getMeals(),
         //sl<MenuCubit>()..getMeals(),
       ),
     ],
