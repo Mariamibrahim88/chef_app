@@ -5,6 +5,8 @@ import 'package:chef_app/features/home/presentation/views/home_view.dart';
 import 'package:chef_app/features/menu/presentation/views/add_meal_view.dart';
 import 'package:chef_app/features/menu/presentation/views/menu_view.dart';
 import 'package:chef_app/features/profile/presentation/views/profile_view.dart';
+import 'package:chef_app/features/profile/presentation/views/widgets/edit_profile_view.dart';
+import 'package:chef_app/features/profile/presentation/views/widgets/setting_view.dart';
 import 'package:chef_app/features/splash/presentation/views/change_lang_view.dart';
 import 'package:chef_app/features/splash/presentation/views/splash_screen.dart';
 import 'package:flutter/material.dart';
@@ -19,6 +21,8 @@ class Routes {
   static const String profile = '/profile';
   static const String menu = '/menu';
   static const String addMeal = '/addMeal';
+  static const String editProfile = '/editProfile';
+  static const String setting = '/setting';
 }
 
 class AppRoutes {
@@ -42,9 +46,14 @@ class AppRoutes {
         return MaterialPageRoute(builder: (_) => const MenuView());
       case Routes.addMeal:
         return MaterialPageRoute(builder: (_) => const AddMealView());
+      case Routes.editProfile:
+        return MaterialPageRoute(builder: (_) => const EditProfileView());
+      case Routes.setting:
+        return MaterialPageRoute(builder: (_) => const SettingView());
 
       default:
         return MaterialPageRoute(builder: (_) => const Scaffold());
     }
   }
 }
+//EditProfileView

@@ -1,3 +1,4 @@
+import 'package:chef_app/features/profile/presentation/views/widgets/profile_view_body.dart';
 import 'package:flutter/material.dart';
 
 class ProfileView extends StatelessWidget {
@@ -5,10 +6,9 @@ class ProfileView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-        child: Text('Profile View',
-            style: TextStyle(fontSize: 30, color: Colors.red)),
+    return const SafeArea(
+      child: Scaffold(
+        body: ProfileViewBody(),
       ),
     );
   }

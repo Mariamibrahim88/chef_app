@@ -11,6 +11,7 @@ import 'package:chef_app/features/home/presentation/manager/cubit/home_cubit.dar
 import 'package:chef_app/features/menu/data/repos/menu_repos.dart';
 import 'package:chef_app/features/menu/data/repos/menu_repos_imp.dart';
 import 'package:chef_app/features/menu/presentation/manager/cubit/menu_cubit.dart';
+import 'package:chef_app/features/profile/data/repos/profile_repos_impl.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 
@@ -30,6 +31,7 @@ void initServiceLocator() {
   //sl.registerSingleton<menuRepoImp>(menuRepoImp(sl.get<ApiService>()));
   //sl.registerLazySingleton<MenuRepos>(() => menuRepoImp(sl.get<ApiService>()));
   sl.registerLazySingleton(() => menuRepoImp(sl()));
+  sl.registerLazySingleton(() => profileRepoImp(sl()));
 
   //sl.registerSingleton(() => menuRepoImp(sl.get()));
 

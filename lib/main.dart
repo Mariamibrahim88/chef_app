@@ -8,6 +8,8 @@ import 'package:chef_app/features/auth/presentation/manager/auth_cubit/auth_cubi
 import 'package:chef_app/features/home/presentation/manager/cubit/home_cubit.dart';
 import 'package:chef_app/features/menu/data/repos/menu_repos_imp.dart';
 import 'package:chef_app/features/menu/presentation/manager/cubit/menu_cubit.dart';
+import 'package:chef_app/features/profile/data/repos/profile_repos_impl.dart';
+import 'package:chef_app/features/profile/presentation/manager/cubit/profile_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -16,7 +18,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   initServiceLocator();
   await sl<CacheHelper>().init();
-  //await sl<CacheHelper>().removeData(key: ApiKeys.token);
+  await sl<CacheHelper>().removeData(key: ApiKeys.token);
 
   await ScreenUtil.ensureScreenSize();
   runApp(MultiBlocProvider(
@@ -40,6 +42,14 @@ void main() async {
         // create: (context) => sl<AuthCubit>(),
         //create: (context) => sl<MenuCubit>()..getMeals(),
         create: (create) => MenuCubit(sl.get<menuRepoImp>())..getMeals(),
+        //sl<MenuCubit>()..getMeals(),
+      ),
+
+      BlocProvider(
+        // create: (context) => sl<AuthCubit>(),
+        //create: (context) => sl<MenuCubit>()..getMeals(),
+        create: (create) =>
+            ProfileCubit(sl.get<profileRepoImp>())..getChefData(),
         //sl<MenuCubit>()..getMeals(),
       ),
     ],

@@ -9,6 +9,7 @@ class EndPoint {
   static const String signUp = 'chef/signup';
   static const String addMeal = 'meal/add-to-menu';
   static const String logout = 'chef/logout';
+
   static String getchefdata(id) {
     return '$getChef$id';
   }

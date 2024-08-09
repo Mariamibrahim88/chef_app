@@ -1,0 +1,140 @@
+// class chefModel {
+//   Location location;
+//   String id;
+//   String name;
+//   String phone;
+//   String email;
+//   String brandName;
+//   String profilePic;
+//   int minCharge;
+//   String disc;
+//   String frontId;
+//   String backId;
+//   List<dynamic> menu;
+//   bool online;
+//   String healthCertificate;
+//   int stock;
+//   String status;
+//   DateTime createdAt;
+
+//   chefModel({
+//     required this.location,
+//     required this.id,
+//     required this.name,
+//     required this.phone,
+//     required this.email,
+//     required this.brandName,
+//     required this.profilePic,
+//     required this.minCharge,
+//     required this.disc,
+//     required this.frontId,
+//     required this.backId,
+//     required this.menu,
+//     required this.online,
+//     required this.healthCertificate,
+//     required this.stock,
+//     required this.status,
+//     required this.createdAt,
+//   });
+
+//   factory chefModel.fromJson(Map<String, dynamic> json) {
+//     return chefModel(
+//       location: Location.fromJson(json['chef']['location']),
+//       id: json['chef']['_id'],
+//       name: json['chef']['name'],
+//       phone: json['chef']['phone'],
+//       email: json['chef']['email'],
+//       brandName: json['chef']['brandName'],
+//       profilePic: json['chef']['profilePic'],
+//       minCharge: json['chef']['minCharge'],
+//       disc: json['chef']['disc'],
+//       frontId: json['chef']['frontId'],
+//       backId: json['chef']['backId'],
+//       menu: json['chef']['menu'],
+//       online: json['chef']['online'],
+//       healthCertificate: json['chef']['healthCertificate'],
+//       stock: json['chef']['stock'],
+//       status: json['chef']['status'],
+//       createdAt: DateTime.parse(json['chef']['createdAt']),
+//     );
+//   }
+// }
+
+// class Location {
+//   String type;
+//   List<int> coordinates;
+
+//   Location({
+//     required this.type,
+//     required this.coordinates,
+//   });
+
+//   factory Location.fromJson(Map<String, dynamic> json) {
+//     return Location(
+//       type: json['type'],
+//       coordinates: List<int>.from(json['coordinates']),
+//     );
+//   }
+// }
+
+class chefModel {
+  Map<String, dynamic>? location;
+  String id;
+  final String name;
+  final String phone;
+  final String email;
+  final String brandName;
+  String profilePic;
+  final int minCharge;
+  String disc;
+  String frontId;
+  String backId;
+  List<dynamic> menu;
+  bool online;
+  String healthCertificate;
+  int stock;
+  String status;
+  DateTime createdAt;
+
+  chefModel({
+    required this.location,
+    required this.id,
+    required this.name,
+    required this.phone,
+    required this.email,
+    required this.brandName,
+    required this.profilePic,
+    required this.minCharge,
+    required this.disc,
+    required this.frontId,
+    required this.backId,
+    required this.menu,
+    required this.online,
+    required this.healthCertificate,
+    required this.stock,
+    required this.status,
+    required this.createdAt,
+  });
+
+  factory chefModel.fromJson(Map<String, dynamic> json) {
+    return chefModel(
+      location: json['chef']['location'],
+      id: json['chef']['_id'],
+      name: json['chef']['name'],
+      phone: json['chef']['phone'],
+      email: json['chef']['email'],
+      brandName: json['chef']['brandName'],
+      profilePic: json['chef']['profilePic'],
+      minCharge: json['chef']['minCharge'],
+      disc: json['chef']['disc'],
+      frontId: json['chef']['frontId'],
+      backId: json['chef']['backId'],
+      menu: json['chef']['menu'],
+      online: json['chef']['online'],
+      healthCertificate: json['chef']['healthCertificate'],
+      stock: json['chef']['stock'],
+      status: json['chef']['status'],
+      createdAt: DateTime.parse(json['chef']['createdAt']),
+    );
+  }
+}

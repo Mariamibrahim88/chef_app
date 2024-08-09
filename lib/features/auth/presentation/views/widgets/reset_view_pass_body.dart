@@ -27,7 +27,9 @@ class ResetPasswordViewBody extends StatelessWidget {
             listener: (context, state) {
               if (state is AuthSuccess) {
                 ShowSnackBar(
-                    context, AppString.checkMail.tr(context), Colors.green);
+                    context,
+                    AppString.passwordChangedSucessfully.tr(context),
+                    Colors.green);
                 // GoRouter.of(context).push('/homeView');
                 navigateReplacement(context: context, route: Routes.login);
               } else if (state is AuthFailure) {

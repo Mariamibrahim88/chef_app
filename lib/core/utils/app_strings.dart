@@ -38,7 +38,7 @@ class AppString {
   static const String dontHaveAnAccount = 'dontHaveAnAccount';
   static const String checkMail = 'checkMail';
   static const String pleaseEnterValidCode = 'pleaseEnterValidCode';
-  static const String passwordChangedSucessfully = 'PasswordChangedSucessfully';
+  static const String passwordChangedSucessfully = 'passwordChangedSucessfully';
   static const String pleaseEnterValidNumber = 'pleaseEnterValidNumber';
 
   //! home-order-menu
@@ -64,6 +64,8 @@ class AppString {
 
   //!setting
   static const String editProfile = 'editProfile';
+  static const String updatesucc = 'updatesucc';
+  static const String update = 'update';
   static const String payment = 'payment';
   static const String notifications = 'notifications';
   static const String favorites = 'favorites';
@@ -71,6 +73,9 @@ class AppString {
   static const String logout = 'logout';
   static const String logoutSucessfully = 'logoutSucessfully';
   static const String changePassword = 'changePassword';
+  static const String nameBrand = 'nameBrand';
+  static const String setting = 'setting';
+  static const String minimum = 'minimum';
   static const String ok = 'ok';
   static const String cancel = 'cancel';
 }
