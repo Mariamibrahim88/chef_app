@@ -82,7 +82,7 @@ class ProfileViewBody extends StatelessWidget {
                                 text: AppString.settings.tr(context),
                                 icon: Icons.settings,
                                 confirmAction: () {
-                                  navigate(
+                                  navigateReplacement(
                                       context: context, route: Routes.setting);
                                 },
                               ),

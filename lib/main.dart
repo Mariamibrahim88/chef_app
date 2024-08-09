@@ -18,7 +18,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   initServiceLocator();
   await sl<CacheHelper>().init();
-  await sl<CacheHelper>().removeData(key: ApiKeys.token);
+  //await sl<CacheHelper>().removeData(key: ApiKeys.token);
 
   await ScreenUtil.ensureScreenSize();
   runApp(MultiBlocProvider(
